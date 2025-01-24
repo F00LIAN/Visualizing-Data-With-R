@@ -116,10 +116,20 @@ lines(Time, Y3, col="darkblue", lwd=3)
 <h2>Scatter Plots and Correlation</h2>
 
 ### 10. Basic Scatter Plot
+```r
+plot(Y1, Y2, pch=19, frame=F, xlim=c(0,160), ylim=c(0,50), cex=2)
+```
 
 ### 11. Add Regression Line
+```r
+reg <- lm(Y2 ~ Y1)
+abline(reg, col="red", lwd=2)
+```
 
 ### 12. Scatterplot Matrix
+```r
+pairs(cbind(Y1, Y2, Y3), pch=19, cex=2, font.axis=2, font.lab=2, lower.panel=NULL)
+```
 
 <h2>Histogram and Barplots</h2>
 
