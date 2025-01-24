@@ -3,7 +3,7 @@
 </p>
 
 <h1>Data Visualization Examples in R</h1>
-This project demonstrates various **data visualization techniques** in R, including **time series plots, scatter plots, bar charts, histograms, and 3D plots** using real-world earthquake data and synthetic datasets.<br />
+<p>This project demonstrates various data visualization techniques in R, including time series plots, scatter plots, bar charts, histograms, and 3D plots using real-world earthquake data and synthetic datasets.</p><br />
 
 <h2>Video Demonstration</h2>
 
