@@ -1,2 +1,194 @@
-# Visualizing-Earthquakes-With-R
-A Short Project on Practicing Visualizations with R using an earthquake dataset over 30 years. 
+<p align="center">
+<img src="https://github.com/user-attachments/assets/cb8b8e30-ee68-4bc0-9f06-76ecdb2317d7" alt="Data Visualization"/>
+</p>
+
+<h1>Data Visualization Examples in R</h1>
+This project demonstrates various **data visualization techniques** in R, including **time series plots, scatter plots, bar charts, histograms, and 3D plots** using real-world earthquake data and synthetic datasets.<br />
+
+<h2>Video Demonstration</h2>
+
+- ### [YouTube: Data Visualization in R](https://www.youtube.com/watch?v=wNsKf7wSqhQ)
+
+<h2>Environments and Technologies Used</h2>
+
+- R Programming
+- RStudio
+- ggplot2, plotly, and base R visualization tools
+
+<h2>Operating Systems Used </h2>
+
+- Windows 11
+
+<h2>List of Prerequisites</h2>
+
+Before running this project, ensure you have:
+- R and RStudio installed.
+- Required R libraries: `ggplot2`, `plotly`, `readxl`.
+- Access to the datasets in the folder (`number of world earthquakes GE 7.xlsx`, `Multiple Time Series.xlsx`, `income.txt`).
+
+<h2>Installation Steps</h2>
+
+### 1. Install Required Libraries
+
+```r
+install.packages(c("ggplot2", "plotly", "readxl"))
+```
+
+### 2. Load and Preprocess Data
+
+```r
+library(readxl)
+
+# Load Earthquake Data
+quakes <- read_excel("D:/number of world earthquakes GE 7.xlsx")
+attach(quakes)
+```
+<h2>Time Series Visualization</h2>
+
+### 3. Basic TIme Series Plot  
+
+```r
+plot(Year, Frequency, type='l', main="Number of Earthquakes by Year", col="darkblue", lwd=2)
+```
+<p> <img src="https://github.com/user-attachments/assets/time_series_plot.png" height="80%" width="80%" alt="Time Series Plot"/> </p>
+
+### 4. Adding Smoothed Trend Line
+
+```r
+smoothed <- lowess(x=Year, y=Frequency, f=.2)$y
+lines(Year, smoothed, col="red", lwd=3)
+```
+<p> <img src="https://github.com/user-attachments/assets/time_series_plot.png" height="80%" width="80%" alt="Time Series Plot"/> </p>
+
+<h2>Aggregating Time Series Data</h2>
+
+### 5. Group the Data into Four-Year Intervals
+
+```r
+sequences <- seq(from=1900, to=2016, by=4)
+cuts <- cut(Year, breaks=floor(length(Year)/4), include.lowest=TRUE, labels=sequences)
+years.binned <- as.numeric(as.vector(cuts))
+
+# Aggregate Data
+aggregated <- aggregate(x = Frequency, by = list(years.binned), FUN=sum)
+attach(aggregated)
+```
+### 6. Plot Aggregated Data
+
+```r
+plot(Group.1, x, type="p", pch=19, frame=F, 
+     main="Number of Earthquakes: Four Year Intervals",
+     xlab="Beginning Year", ylab="Frequency",
+     font.axis=2, font.lab=2)
+```
+<p> <img src="https://github.com/user-attachments/assets/aggregated_time_series.png" height="80%" width="80%" alt="Aggregated Time Series"/> </p>
+
+<h2>Multiple Time Series Visualization</h2>
+
+### 7. Load Multiple Time Series Data
+
+```r
+multseries <- read_excel("D:/Multiple Time Series.xlsx")
+attach(multseries)
+```
+### 8. Plot Multiple Time Series
+
+```r
+plot(Time, Y1, col="darkred", type='l', ylim=c(0,150), xlim=c(0,20),
+     frame=FALSE, lwd=2, font.lab=2, font.axis=2, 
+     ylab="Time Series", xlab="Time")
+lines(Time, Y2, col="darkgreen", lwd=2)
+lines(Time, Y3, col="darkblue", lwd=2)
+```
+<p> <img src="https://github.com/user-attachments/assets/multiple_time_series.png" height="80%" width="80%" alt="Multiple Time Series"/> </p>
+
+### 9. Add Shaded Regions
+
+```r
+polygon(c(Time, rev(Time)), c(Y3, rev(Y2)), col="lightgray", border=F)
+polygon(c(Time, rev(Time)), c(Y1, rev(Y3)), col="lightyellow", border=F)
+lines(Time, Y1, col="darkred", lwd=3)
+lines(Time, Y2, col="darkgreen", lwd=3)
+lines(Time, Y3, col="darkblue", lwd=3)
+```
+<p> <img src="https://github.com/user-attachments/assets/shaded_time_series.png" height="80%" width="80%" alt="Shaded Time Series"/> </p>
+
+<h2>Scatter Plots and Correlation</h2>
+
+### 10. Basic Scatter Plot
+
+### 11. Add Regression Line
+
+### 12. Scatterplot Matrix
+
+<h2>Histogram and Barplots</h2>
+
+### 13. Creating a Barplot
+```r
+max.temp <- c(22, 27, 26, 24, 23, 26, 28)
+days <- c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
+
+barplot(max.temp, main="Maximum Temperatures in a Week",
+        ylab="Degree Celsius", xlab="Day",
+        names.arg=days, col="darkred")
+```
+
+### 14. Histogram of Income Distribution
+```r
+income <- read.table("D:/income.txt", header=T, sep="\t")
+hist(income$avg_income, main="Distribution of US Census Average Income", 
+     ylab="Frequency of Observations", xlab = "Average Disposable Income",
+     breaks=100, col="lightgreen", font=2)
+```
+
+### 15. Surface Plot
+```r
+library(plotly)
+p <- plot_ly(z = volcano, type = "surface")
+p
+```
+<p> <img src="https://github.com/user-attachments/assets/3d_surface.png" height="80%" width="80%" alt="3D Surface Plot"/> </p>
+
+### 16. 3D Perspective Plot
+```r
+cone <- function(x, y){
+     sqrt(x^2+y^2)
+}
+
+x <- y <- seq(-1, 1, length= 20)
+z <- outer(x, y, cone)
+
+persp(x, y, z,
+      main="Perspective Plot of a Cone",
+      zlab = "Height",
+      theta = 30, phi = 15,
+      col = "springgreen", shade = 0.5)
+```
+<p> <img src="https://github.com/user-attachments/assets/3d_perspective.png" height="80%" width="80%" alt="3D Perspective"/> </p>
+
+<h2>Conclusion</h2>
+
+- Time series visualization was used to explore earthquake trends.
+- Scatter plots helped analyze correlation in datasets.
+- Histograms and bar charts were utilized for distribution insights.
+- 3D surface and perspective plots provided advanced visualization.
+
+<h2>Future Improvements</h2>
+
+- Experiment with interactive dashboards using Shiny.
+- Implement geospatial mapping for earthquake locations.
+- Explore machine learning models for trend prediction.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
