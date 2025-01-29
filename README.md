@@ -7,7 +7,7 @@
 
 <h2>Video Demonstration</h2>
 
-- ### [YouTube: Data Visualization in R](https://www.youtube.com/watch?v=wNsKf7wSqhQ)
+- ### [YouTube: Data Visualization in R (Coming Soon)](https://www.youtube.com/watch?v=wNsKf7wSqhQ)
 
 <h2>Environments and Technologies Used</h2>
 
