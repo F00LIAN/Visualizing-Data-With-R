@@ -45,12 +45,12 @@ attach(quakes)
 ```
 <h2>Time Series Visualization</h2>
 
-### 3. Basic TIme Series Plot  
+### 3. Basic Time Series Plot  
 
 ```r
 plot(Year, Frequency, type='l', main="Number of Earthquakes by Year", col="darkblue", lwd=2)
 ```
-<p> <img src="https://github.com/user-attachments/assets/time_series_plot.png" height="80%" width="80%" alt="Time Series Plot"/> </p>
+<p> <img src="https://github.com/user-attachments/assets/b7d22d3e-4306-4cb7-a1c8-850b84c98303" height="50%" width="50%" alt="Time-Series Plot"/> </p>
 
 ### 4. Adding Smoothed Trend Line
 
@@ -58,7 +58,7 @@ plot(Year, Frequency, type='l', main="Number of Earthquakes by Year", col="darkb
 smoothed <- lowess(x=Year, y=Frequency, f=.2)$y
 lines(Year, smoothed, col="red", lwd=3)
 ```
-<p> <img src="https://github.com/user-attachments/assets/time_series_plot.png" height="80%" width="80%" alt="Time Series Plot"/> </p>
+<p> <img src="https://github.com/user-attachments/assets/e9e66fd5-9be3-4b74-8236-f1c6f9553c6f" height="50%" width="50%" alt="Smooth Trend Line"/> </p>
 
 <h2>Aggregating Time Series Data</h2>
 
@@ -73,26 +73,25 @@ years.binned <- as.numeric(as.vector(cuts))
 aggregated <- aggregate(x = Frequency, by = list(years.binned), FUN=sum)
 attach(aggregated)
 ```
-### 6. Plot Aggregated Data
 
+### 6. Plot Aggregated Data
 ```r
 plot(Group.1, x, type="p", pch=19, frame=F, 
      main="Number of Earthquakes: Four Year Intervals",
      xlab="Beginning Year", ylab="Frequency",
      font.axis=2, font.lab=2)
 ```
-<p> <img src="https://github.com/user-attachments/assets/aggregated_time_series.png" height="80%" width="80%" alt="Aggregated Time Series"/> </p>
+<p> <img src="https://github.com/user-attachments/assets/5c20c7ab-d418-4641-9caa-02d485b458b7" height="50%" width="50%" alt="Aggregated Time-Series"/> </p>
 
 <h2>Multiple Time Series Visualization</h2>
 
 ### 7. Load Multiple Time Series Data
-
 ```r
 multseries <- read_excel("D:/Multiple Time Series.xlsx")
 attach(multseries)
 ```
-### 8. Plot Multiple Time Series
 
+### 8. Plot Multiple Time Series
 ```r
 plot(Time, Y1, col="darkred", type='l', ylim=c(0,150), xlim=c(0,20),
      frame=FALSE, lwd=2, font.lab=2, font.axis=2, 
@@ -100,7 +99,8 @@ plot(Time, Y1, col="darkred", type='l', ylim=c(0,150), xlim=c(0,20),
 lines(Time, Y2, col="darkgreen", lwd=2)
 lines(Time, Y3, col="darkblue", lwd=2)
 ```
-<p> <img src="https://github.com/user-attachments/assets/multiple_time_series.png" height="80%" width="80%" alt="Multiple Time Series"/> </p>
+
+<p> <img src="https://github.com/user-attachments/assets/27fd63e8-a5e2-48a8-8d1b-c8e88a496a76" height="50%" width="50%" alt="Multiple Time Series"/> </p>
 
 ### 9. Add Shaded Regions
 
@@ -111,7 +111,7 @@ lines(Time, Y1, col="darkred", lwd=3)
 lines(Time, Y2, col="darkgreen", lwd=3)
 lines(Time, Y3, col="darkblue", lwd=3)
 ```
-<p> <img src="https://github.com/user-attachments/assets/shaded_time_series.png" height="80%" width="80%" alt="Shaded Time Series"/> </p>
+<p> <img src="https://github.com/user-attachments/assets/c71d3647-08bd-424a-ac11-5cba5fa43e64" height="50%" width="50%" alt="Shaded Time Series"/> </p>
 
 <h2>Scatter Plots and Correlation</h2>
 
@@ -151,15 +151,9 @@ hist(income$avg_income, main="Distribution of US Census Average Income",
      breaks=100, col="lightgreen", font=2)
 ```
 
-### 15. Surface Plot
-```r
-library(plotly)
-p <- plot_ly(z = volcano, type = "surface")
-p
-```
-<p> <img src="https://github.com/user-attachments/assets/3d_surface.png" height="80%" width="80%" alt="3D Surface Plot"/> </p>
+<p> <img src="https://github.com/user-attachments/assets/b5f33bf8-e6b5-4d42-b6c8-69907499573a" height="50%" width="50%" alt="Histogram Plot"/> </p>
 
-### 16. 3D Perspective Plot
+### 15. 3D Perspective Plot
 ```r
 cone <- function(x, y){
      sqrt(x^2+y^2)
@@ -174,7 +168,7 @@ persp(x, y, z,
       theta = 30, phi = 15,
       col = "springgreen", shade = 0.5)
 ```
-<p> <img src="https://github.com/user-attachments/assets/3d_perspective.png" height="80%" width="80%" alt="3D Perspective"/> </p>
+<p> <img src="https://github.com/user-attachments/assets/2ff19f8d-923c-4b3b-9bbb-6a7a2edb501e" height="30%" width="30%" alt="3D Perspective"/> </p>
 
 <h2>Conclusion</h2>
 
